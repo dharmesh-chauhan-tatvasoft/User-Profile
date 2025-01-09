@@ -27,8 +27,17 @@
     <string name="percentageSymbol">%</string>
     <string name="full_name_Error">Please enter full name</string>
     <string name="phone_error">Please enter phone number</string>
+    <string name="invalid_phone_error">Please enter valid phone number</string>
     <string name="email_error">Please enter email</string>
-    <string name="success">Success!</string>
+    <string name="invalid_email_error">Please enter valid email</string>
+    <string name="address_error">Please enter address</string>
+    <string name="please">Please</string>
+    <string name="country_error">enter country</string>
+    <string name="select_gender">select gender</string>
+    <string name="hobby_Error">select at least one hobby</string>
+    <string name="ssc_percentage_Error">enter SSC/HSC percentage</string>
+    <string name="bca_percentage_Error">enter BCA/B.COM percentage</string>
+    <string name="success">Profile added successfully</string>
 
     <string-array name="county_list">
         <item>United States</item>

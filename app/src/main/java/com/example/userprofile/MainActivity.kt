@@ -1,20 +1,14 @@
 package com.example.userprofile
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.TextInputEditText
 import android.support.design.widget.TextInputLayout
+import android.support.v7.app.AppCompatActivity
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Patterns
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.DatePicker
-import android.widget.RadioGroup
-import android.widget.SeekBar
-import android.widget.Spinner
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var fullNameLayout: TextInputLayout
@@ -24,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var emailLayout: TextInputLayout
     private lateinit var editEmail: TextInputEditText
     private lateinit var countryAutoCompleteView: AutoCompleteTextView
+    private lateinit var addressLayout: TextInputLayout
     private lateinit var editAddress: TextInputEditText
     private lateinit var dobDatePicker: DatePicker
     private lateinit var radioGroupGender: RadioGroup
@@ -52,6 +47,7 @@ class MainActivity : AppCompatActivity() {
         emailLayout = findViewById(R.id.emailLayout)
         editEmail = findViewById(R.id.edtEmail)
         countryAutoCompleteView = findViewById(R.id.countryAutoCompleteView)
+        addressLayout = findViewById(R.id.addressLayout)
         editAddress = findViewById(R.id.edtAddress)
         dobDatePicker = findViewById(R.id.dobDatepicker)
         radioGroupGender = findViewById(R.id.radioGroupGender)
@@ -106,6 +102,77 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        editFullName.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // This is called before text change
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(s?.isNotBlank() == true) {
+                    fullNameLayout.isErrorEnabled = false
+                } else {
+                    fullNameLayout.error = getString(R.string.full_name_Error)
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                // This is called after text change
+            }
+        })
+
+        editPhoneNumber.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // This is called before text change
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(s?.isNotBlank() == true) {
+                    phoneNumberLayout.isErrorEnabled = false
+                } else {
+                    phoneNumberLayout.error = getString(R.string.phone_error)
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                // This is called after text change
+            }
+        })
+
+        editEmail.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // This is called before text change
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(s?.isNotBlank() == true) {
+                    emailLayout.isErrorEnabled = false
+                } else {
+                    emailLayout.error = getString(R.string.email_error)
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                // This is called after text change
+            }
+        })
+
+        editAddress.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // This is called before text change
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(s?.isNotBlank() == true) {
+                    addressLayout.isErrorEnabled = false
+                } else {
+                    addressLayout.error = getString(R.string.address_error)
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                // This is called after text change
+            }
+        })
     }
 
     fun onClickSubmit(view: View) {
@@ -116,24 +183,74 @@ class MainActivity : AppCompatActivity() {
 
     private fun validateValues(): Boolean {
         var isValid = true
+        val contactNumber: String = editPhoneNumber.text.toString()
+        var validationErrorMessage = getString(R.string.please)
         if(editFullName.text.toString().isEmpty()) {
             fullNameLayout.error = getString(R.string.full_name_Error)
             isValid = false
         }
-        if(editPhoneNumber.text.toString().isEmpty()) {
+        if(contactNumber.isEmpty()) {
             phoneNumberLayout.error = getString(R.string.phone_error)
+            isValid = false
+        }
+        if(!contactNumber.matches("\\d{10}".toRegex())) {
+            phoneNumberLayout.error = getString(R.string.invalid_phone_error)
             isValid = false
         }
         if(editEmail.text.toString().isEmpty()) {
             emailLayout.error = getString(R.string.email_error)
             isValid = false
         }
+        if(!Patterns.EMAIL_ADDRESS.matcher(editEmail.text.toString()).matches()) {
+            emailLayout.error = getString(R.string.invalid_email_error)
+            isValid = false
+        }
+        if(editAddress.text.toString().isEmpty()) {
+            addressLayout.error = getString(R.string.address_error)
+            isValid = false
+        }
+        if(countryAutoCompleteView.text.toString().isEmpty()) {
+            isValid = false
+            validationErrorMessage = getValidationErrorMessageFormat(validationErrorMessage)
+            validationErrorMessage += getString(R.string.country_error)
+        }
+        if(radioGroupGender.checkedRadioButtonId == -1) {
+            isValid = false
+            validationErrorMessage = getValidationErrorMessageFormat(validationErrorMessage)
+            validationErrorMessage += getString(R.string.select_gender)
+        }
+        if(!readingCheckbox.isChecked && !musicCheckbox.isChecked && !sportsCheckbox.isChecked) {
+            isValid = false
+            validationErrorMessage = getValidationErrorMessageFormat(validationErrorMessage)
+            validationErrorMessage += getString(R.string.hobby_Error)
+        }
+        if(seekbarSSC.progress == 0) {
+            isValid = false
+            validationErrorMessage = getValidationErrorMessageFormat(validationErrorMessage)
+            validationErrorMessage += getString(R.string.ssc_percentage_Error)
+        }
+        if(seekbarBCA.progress == 0) {
+            isValid = false
+            validationErrorMessage = getValidationErrorMessageFormat(validationErrorMessage)
+            validationErrorMessage += getString(R.string.bca_percentage_Error)
+        }
         if (isValid) {
             fullNameLayout.isErrorEnabled = false
             phoneNumberLayout.isErrorEnabled = false
             emailLayout.isErrorEnabled = false
+            addressLayout.isErrorEnabled = false
+        }
+        if(validationErrorMessage != getString(R.string.please)) {
+            Toast.makeText(this, validationErrorMessage, Toast.LENGTH_LONG).show()
         }
         return  isValid
+    }
+
+    private fun getValidationErrorMessageFormat(validationErrorMessage: String): String {
+        if(validationErrorMessage != getString(R.string.please)) {
+            return "$validationErrorMessage, "
+        }
+        return "$validationErrorMessage "
     }
 }
 

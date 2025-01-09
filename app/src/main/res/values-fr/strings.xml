@@ -27,8 +27,17 @@
     <string name="percentageSymbol">%</string>
     <string name="full_name_Error">Veuillez entrer le nom complet</string>
     <string name="phone_error">Veuillez entrer un numéro de téléphone</string>
+    <string name="invalid_phone_error">Veuillez entrer un numéro de téléphone valide</string>
     <string name="email_error">Veuillez entrer une adresse e-mail</string>
-    <string name="success">Succès !</string>
+    <string name="invalid_email_error">Veuillez entrer une adresse e-mail valide</string>
+    <string name="address_error">Veuillez entrer l\'adresse</string>
+    <string name="please">Veuillez</string>
+    <string name="country_error">entrer le pays</string>
+    <string name="select_gender">sélectionner le sexe</string>
+    <string name="hobby_Error">sélectionnez au moins un passe-temps</string>
+    <string name="ssc_percentage_Error">saisir le pourcentage SSC/HSC</string>
+    <string name="bca_percentage_Error">entrez le pourcentage BCA/B.COM</string>
+    <string name="success">Profil ajouté avec succès</string>
 
     <string-array name="county_list">
         <item>États-Unis</item>
