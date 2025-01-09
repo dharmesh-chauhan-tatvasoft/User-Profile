@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Profil Utilisateur</string>
+    <string name="personal_details">Détails Personnels</string>
+    <string name="full_name">Nom Complet</string>
+    <string name="phone_number">Numéro de Téléphone</string>
+    <string name="email">E-mail</string>
+    <string name="country">Pays</string>
+    <string name="address">Adresse</string>
+    <string name="dob">Date de Naissance</string>
+    <string name="gender">Genre</string>
+    <string name="hobbies">Loisirs</string>
+    <string name="ssc_percentage">Pourcentage SSC</string>
+    <string name="bca_percentage">Pourcentage BCA</string>
+    <string name="submit">Soumettre</string>
+    <string name="male">Homme</string>
+    <string name="female">Femme</string>
+    <string name="reading">Lecture</string>
+    <string name="music">Musique</string>
+    <string name="sports">Sports</string>
+    <string name="education_details">Détails Éducatifs</string>
+    <string name="ssc">SSC</string>
+    <string name="hsc">HSC</string>
+    <string name="bca">BCA</string>
+    <string name="bcom">B.COM</string>
+    <string name="percentage">Pourcentage :</string>
+    <string name="initialPercentage">0%</string>
+    <string name="percentageSymbol">%</string>
+    <string name="full_name_Error">Veuillez entrer le nom complet</string>
+    <string name="phone_error">Veuillez entrer un numéro de téléphone</string>
+    <string name="email_error">Veuillez entrer une adresse e-mail</string>
+    <string name="success">Succès !</string>
+
+    <string-array name="county_list">
+        <item>États-Unis</item>
+        <item>Canada</item>
+        <item>Inde</item>
+        <item>Royaume-Uni</item>
+        <item>Australie</item>
+    </string-array>
+</resources>
